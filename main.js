@@ -9,6 +9,21 @@ const equalEl = document.querySelector(".equal");
 const clearAllEl = document.querySelector(".all-clear");
 const clearLastEl = document.querySelector(".last-entity-clear");
 
+//notepad constants
+const first = document.querySelector(".first");
+const second = document.querySelector(".second");
+const third = document.querySelector(".third");
+const fourth = document.querySelector(".fourth");
+const fifth = document.querySelector(".fifth");
+const sixth = document.querySelector(".sixth");
+const seventh = document.querySelector(".seventh");
+const eigth = document.querySelector(".eigth");
+const ninth = document.querySelector(".ninth");
+const tenth = document.querySelector(".tenth");
+
+//
+let tempHistory = "";
+
 // declare variables
 let dis1Num = "";
 let dis2Num = "";
@@ -47,7 +62,7 @@ operationEl.forEach((operation) => {
   });
 });
 
-// will need for the notepad around 42 mins
+// clear display when equal pressed
 function clearVar(name = "") {
   dis1Num += dis2Num + " " + name + " ";
   display1El.innerText = dis1Num;
@@ -70,14 +85,13 @@ function mathOperation() {
     result = parseFloat(result) % parseFloat(dis2Num);
   }
 }
-// operation();
 
-
-// equal function around 53 mins
+// equal function 
 equalEl.addEventListener("click", () => {
   if (!dis2Num || !dis1Num) return;
   haveDot = false;
   mathOperation();
+  updateList();
   clearVar();
   display2El.innerText = result;
   tempResultEl.innerText = "";
@@ -102,7 +116,7 @@ clearLastEl.addEventListener("click", () => {
 });
 
 
-// adds keyboard functionality around 1hr
+// adds keyboard functionality 
 window.addEventListener("keydown", (e) => {
   if (
     e.key === "0" ||
@@ -152,3 +166,19 @@ function clickOperation(key) {
 function clickEqual() {
   equalEl.click();
 }
+
+//notepad functions
+ function updateList() {
+  tenth.innerText = ninth.innerText;
+  ninth.innerText = eigth.innerText;
+  eigth.innerText = seventh.innerText;
+  seventh.innerText = sixth.innerText;
+  sixth.innerText = fifth.innerText;
+  fifth.innerText = fourth.innerText;
+  fourth.innerText = third.innerText;
+  third.innerText = second.innerText;
+  second.innerText = first.innerText;
+  let tempStr = dis1Num.replace(/\s+/gm,'').trim()
+  first.innerText = tempStr.trim() + dis2Num.replace(/\s+/gm,'').trim() + '=' + result;
+} 
+
