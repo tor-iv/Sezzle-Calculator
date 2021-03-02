@@ -1,0 +1,24 @@
+{
+  "name": "sezzle-calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tor-iv/Sezzle-Calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tor-iv/Sezzle-Calculator/issues"
+  },
+  "homepage": "https://github.com/tor-iv/Sezzle-Calculator#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "mongodb": "^3.6.4"
+  }
+}
