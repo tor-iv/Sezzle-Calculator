@@ -23,17 +23,17 @@ const eigth = document.querySelector(".eigth");
 const ninth = document.querySelector(".ninth");
 const tenth = document.querySelector(".tenth");
 
-//
+// Here was the attempted connection for mongodb but could not figure out node
 // "mongodb+srv://vcox2:<password>@sezzle-calculator.an1n2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 // database password Df4XqPGk1Dz8HAKz
-const MongoClient = import('mongodb').MongoClient;
+/*const MongoClient = import('mongodb').MongoClient;
 const uri = "mongodb+srv://vcox2:Df4XqPGk1Dz8HAKz@sezzle-calculator.an1n2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const collection = client.db("test").collection("devices");
   // perform actions on the collection object
   client.close();
-});
+}); */
 
 
 let tempHistory = "";
@@ -193,10 +193,10 @@ function clickEqual() {
     "fourth": third.innerText,
     "third": second.innerText,
     "second": first.innerText,
-    "first": dis1Num.replace(/\s+/gm,'').trim() + dis2Num.replace(/\s+/gm,'').trim() + '=' + result
+    "first": dis1Num.replace(/[\s+\n]/gm,'').trim() + dis2Num.replace(/\s+/gm,'').trim() + '=' + result
   }
   //WriteToFile();
-  db.collection('operations').insertOne(noteContent);
+ // db.collection('operations').insertOne(noteContent);
   tenth.innerText = noteContent.tenth;
   ninth.innerText = noteContent.ninth;
   eigth.innerText = noteContent.eigth;
@@ -206,9 +206,11 @@ function clickEqual() {
   fourth.innerText = noteContent.fourth;
   third.innerText = noteContent.third;
   second.innerText = noteContent.second;
-  first.innerText = noteContent.first;
+  tempval = noteContent.first.replace(/(\s+|\n|\t)/g,'').trim();
+  first.innerText = tempval.replace(/\s+/g,'');
 }
 
+// attempted file execution
 /* function WriteToFile() {
   let fso = CreateObject("Scripting.FileSystemObject");  
   let s = fso.CreateTextFile("test.txt", True);
