@@ -1,5 +1,7 @@
 // Main.js by Tor Cox
 // declare html constants
+
+
 const display1El = document.querySelector(".display-1");
 const display2El = document.querySelector(".display-2");
 const tempResultEl = document.querySelector(".temp-result");
@@ -21,7 +23,19 @@ const eigth = document.querySelector(".eigth");
 const ninth = document.querySelector(".ninth");
 const tenth = document.querySelector(".tenth");
 
-//
+// Here was the attempted connection for mongodb but could not figure out node
+// "mongodb+srv://vcox2:<password>@sezzle-calculator.an1n2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+// database password Df4XqPGk1Dz8HAKz
+/*const MongoClient = import('mongodb').MongoClient;
+const uri = "mongodb+srv://vcox2:Df4XqPGk1Dz8HAKz@sezzle-calculator.an1n2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+}); */
+
+
 let tempHistory = "";
 
 // declare variables
@@ -169,16 +183,39 @@ function clickEqual() {
 
 //notepad functions
  function updateList() {
-  tenth.innerText = ninth.innerText;
-  ninth.innerText = eigth.innerText;
-  eigth.innerText = seventh.innerText;
-  seventh.innerText = sixth.innerText;
-  sixth.innerText = fifth.innerText;
-  fifth.innerText = fourth.innerText;
-  fourth.innerText = third.innerText;
-  third.innerText = second.innerText;
-  second.innerText = first.innerText;
-  let tempStr = dis1Num.replace(/\s+/gm,'').trim()
-  first.innerText = tempStr.trim() + dis2Num.replace(/\s+/gm,'').trim() + '=' + result;
-} 
+   var noteContent = {
+    "tenth": ninth.innerText,
+    "ninth": eigth.innerText,
+    "eigth": seventh.innerText,
+    "seventh": sixth.innerText,
+    "sixth": fifth.innerText,
+    "fifth": fourth.innerText,
+    "fourth": third.innerText,
+    "third": second.innerText,
+    "second": first.innerText,
+    "first": dis1Num.replace(/[\s+\n]/gm,'').trim() + dis2Num.replace(/\s+/gm,'').trim() + '=' + result
+  }
+  //WriteToFile();
+ // db.collection('operations').insertOne(noteContent);
+  tenth.innerText = noteContent.tenth;
+  ninth.innerText = noteContent.ninth;
+  eigth.innerText = noteContent.eigth;
+  seventh.innerText = noteContent.seventh;
+  sixth.innerText = noteContent.sixth;
+  fifth.innerText = noteContent.fifth;
+  fourth.innerText = noteContent.fourth;
+  third.innerText = noteContent.third;
+  second.innerText = noteContent.second;
+  tempval = noteContent.first.replace(/(\s+|\n|\t)/g,'').trim();
+  first.innerText = tempval.replace(/\s+/g,'');
+}
+
+// attempted file execution
+/* function WriteToFile() {
+  let fso = CreateObject("Scripting.FileSystemObject");  
+  let s = fso.CreateTextFile("test.txt", True);
+  s.writeLine("hi");
+//  s.writeline(document.passForm.input1.value);
+  s.Close();
+} */
 

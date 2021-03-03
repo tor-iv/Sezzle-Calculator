@@ -95,8 +95,10 @@ section{
     padding: 20px;
     font-size: 20px;
     position: relative;
+    white-space: nowrap;
 }
 
 .li{
     padding-bottom: 10px;
+    white-space: nowrap;
 }
